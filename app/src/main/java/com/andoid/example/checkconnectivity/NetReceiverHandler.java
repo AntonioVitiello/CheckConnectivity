@@ -59,21 +59,21 @@ public class NetReceiverHandler extends BroadcastReceiver {
         // Notifiy any handlers.
         Iterator<Integer> iterator = mHandlers.keySet().iterator();
         while (iterator.hasNext()) {
-            Integer messageCode = iterator.next();
-            Handler target = mHandlers.get(messageCode);
-            Message message = Message.obtain(target, messageCode);
+            Integer clientId = iterator.next();
+            Handler target = mHandlers.get(clientId);
+            Message message = Message.obtain(target, clientId);
             target.sendMessage(message);
         }
     }
 
 
-    public void startListening(Handler.Callback callback, int messageCode) {
+    public void startListening(Handler.Callback callback, int clientId) {
         Handler target = new Handler(callback);
-        mHandlers.put(messageCode, target);
+        mHandlers.put(clientId, target);
     }
 
-    public void stopListening(int messageCode) {
-        mHandlers.remove(messageCode);
+    public void stopListening(int clientId) {
+        mHandlers.remove(clientId);
     }
 
     public NetworkInfo getNetworkInfo() {

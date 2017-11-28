@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class MainActivityHandler extends AppCompatActivity implements Handler.Callback {
 
-    private static final int MESSAGE_CODE_ID = 1;
+    private static final int HANDLER_CLIENT_ID = 1;
     private static final String LOG_TAG = "antlap";
     private static TextView mCheckConnectionTextView;
 
@@ -69,14 +69,14 @@ public class MainActivityHandler extends AppCompatActivity implements Handler.Ca
 
     private void registerBroadcastReceiver(){
         Log.d(LOG_TAG, "registerBroadcastReceiver: ");
-        mReceiver.startListening(this, MESSAGE_CODE_ID);
+        mReceiver.startListening(this, HANDLER_CLIENT_ID);
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(mReceiver, filter);
     }
 
     private void unregisterBroadcastReceiver(){
         Log.d(LOG_TAG, "unregisterBroadcastReceiver: ");
-        mReceiver.stopListening(MESSAGE_CODE_ID);
+        mReceiver.stopListening(HANDLER_CLIENT_ID);
         unregisterReceiver(mReceiver);
     }
 

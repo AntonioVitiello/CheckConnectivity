@@ -27,7 +27,6 @@ import java.util.Iterator;
  */
 public class NetworkConnectivityListener {
     private static final String LOG_TAG = "antlap";
-    private static final boolean DBG = false;
     private Context mContext;
     private HashMap<Handler, Integer> mHandlers = new HashMap<Handler, Integer>();
     private State mState;
@@ -186,14 +185,11 @@ public class NetworkConnectivityListener {
             } else {
                 mState = State.CONNECTED;
             }
-            mNetworkInfo = (NetworkInfo)
-                    intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
-            mOtherNetworkInfo = (NetworkInfo)
-                    intent.getParcelableExtra(ConnectivityManager.EXTRA_OTHER_NETWORK_INFO);
+            mNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
+            mOtherNetworkInfo = intent.getParcelableExtra(ConnectivityManager.EXTRA_OTHER_NETWORK_INFO);
             mReason = intent.getStringExtra(ConnectivityManager.EXTRA_REASON);
-            mIsFailover =
-                    intent.getBooleanExtra(ConnectivityManager.EXTRA_IS_FAILOVER, false);
-            if (DBG) {
+            mIsFailover = intent.getBooleanExtra(ConnectivityManager.EXTRA_IS_FAILOVER, false);
+            if (BuildConfig.DEBUG) {
                 Log.d(LOG_TAG, "onReceive(): mNetworkInfo=" + mNetworkInfo + " mOtherNetworkInfo = "
                         + (mOtherNetworkInfo == null ? "[none]" : mOtherNetworkInfo +
                         " noConn=" + noConnectivity) + " mState=" + mState.toString());
