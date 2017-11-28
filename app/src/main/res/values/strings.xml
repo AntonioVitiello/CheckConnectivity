@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CheckConnectivity</string>
+    <string name="app_observer_name">CheckConnectivity with Observer</string>
+    <string name="app_handler_name">CheckConnectivity with Handler</string>
+</resources>
